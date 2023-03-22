@@ -11,6 +11,8 @@ class Leniar_reg():
     # I need to build it by the house dateset from kage
     def __init__(self) -> None:
          
-         return None
+        
+        
+        return None
         
     
