@@ -1,8 +1,20 @@
 import numpy as np
-from typing import Touple
+#from typing import Touple
 import torch
-
+import torchvision # tensor_to_PIL(obj.circle)
+from torchvision import transforms
+from PIL import Image
 # I need to work with tensor and img with torch fitches
+
+def normalize_image(image): # !!! ???
+    min_intensity = torch.min(image)
+    image = image - min_intensity
+    max_intensity = torch.max(image)
+    return image / max_intensity
+
+def tensor_to_PIL(tensor): # !!! ???
+    return transforms.ToPILImage()(normalize_image(tensor).squeeze(0))
+
 class Tensor_Figurse():
 
     def __init__(self) -> None:
