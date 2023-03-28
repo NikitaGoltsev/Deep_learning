@@ -11,9 +11,8 @@ class Tensor_Figurse():
 
         return None
     
-    def circle(self, r:int = 5) -> torch.Tensor: # Create and retrunrn circle
+    def circle(self, r:int = 5, width:int = 5) -> torch.Tensor: # Create and retrunrn circle
         # Cirle with r =
-        width = 5
         diametr = 2*r
         canvas = torch.zeros((diametr, diametr))# Torch tensor with in 2d space
         # canvas - got only zero in every elem
@@ -23,11 +22,17 @@ class Tensor_Figurse():
                 left_side = (i - r) ** 2 + (j - r) ** 2
                 if(left_side >= r**2 and left_side >= (r - width)**2):
                     canvas[i,j] = 1
+        
         return canvas
 
-    def square(self, x:int = 10) -> torch.Tensor:
+    def square(self, x:int = 10, width:int = 5) -> torch.Tensor:
+        
+        canvas = torch.ones((x,x))
+        inner = torch.zeros((x - 2*width ), (x - 2*width ))
+        # And now I am cut inner from canvas ) (I able to explain that on this example)
+        canvas[width:x-width, width:x-width] = inner 
 
-        return None
+        return canvas
 
     def block(self, x:int = 10, y:int = 10) -> torch.Tensor:
 
