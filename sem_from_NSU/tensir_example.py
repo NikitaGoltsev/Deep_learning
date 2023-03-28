@@ -34,7 +34,11 @@ class Tensor_Figurse():
 
         return canvas
 
-    def block(self, x:int = 10, y:int = 10) -> torch.Tensor:
+    def block(self, x:int = 10, y:int = 10, width:int = 5) -> torch.Tensor:
 
-        return None
+        canvas = torch.ones((y, x))
+        inner = torch.zeros((y - 2 * width, y - 2 * width))
+        canvas[width:y-width, width:x-width] = inner 
+
+        return canvas
     
