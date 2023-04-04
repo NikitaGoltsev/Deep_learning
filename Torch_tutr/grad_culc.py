@@ -27,3 +27,23 @@ def gradient(x, y, y_predict):
 
 # Prediction befor treaning
 print(f'Prediction befor treaning: f(5) = {forward(5):.3f}')
+
+# Traning
+learning_rate = 0.01
+n_iters = 10
+
+for epoch in range(n_iters):
+
+    # prediction = forward pass
+    y_pred = forward(x)
+
+    ls = loss(y, y_pred)
+
+    dw = gradient(x, y, y_pred)
+
+    w -= learning_rate * dw
+
+    if epoch % 1 == 0:
+        print(f'epoch: {epoch+1}: w = {w:.3f}, loss = {ls:.8f}')
+
+print(f'Prediction after treaning: f(5) = {forward(5):.3f}')
