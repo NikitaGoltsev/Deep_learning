@@ -17,7 +17,7 @@ learning_rate = 0.001
 # We need to transform them to tenzor
 transform = transforms.Compose(
     [transforms.ToTensor(),
-     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]) # ?
 
 # Get from torchvision
 train_dataset = torchvision.datasets.CIFAR10(root='./date', train=True,
@@ -40,7 +40,19 @@ class ConvNet(nn.Module):
 
     def __init__(self) -> None:
         super().__init__()
-        pass
+        # to specify size
+        #       1) channel_size = color
+        #       2)  output_cannel_size = 6
+        #       3)  kernel_zize = 5
+        self.conv1 = nn.Conv2d(3, 6, 5)
+        #                 in pool just kernel sizes
+        self.pool = nn.MaxPool2d(2,2)
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        #
+        #
+        self.fc1 = nn.Linear(16*5*5, 120) #? # fully connected layer
+        self.fc2 = nn.Linear(120, 84)
+        self.fc3 = nn.Linear(84, 10)
 
     def forward(self, x):
         pass
@@ -101,6 +113,6 @@ with torch.no_grad():
     # For each single class
     for i in range(10):
         lc_acc = 100.0 * n_class_correct[i] / n_class_samples[i]
-        print(f'Accuracy of {classes[i]}: {lc_acc}')
+        print(f'Accuracy of {classes[i]}: {lc_acc} %')
 
 
